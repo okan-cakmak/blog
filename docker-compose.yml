@@ -1,0 +1,10 @@
+version: '3'
+
+services:
+  web:
+    build: ./blog_backend
+    command: python manage.py runserver
+    volumes:
+      - .:/code
+    ports:
+      - "8000:8000"
