@@ -71,7 +71,7 @@ venv/
 ENV/
 env.bak/
 venv.bak/
-
+blog_api/
 # mkdocs documentation
 /site
 
