@@ -1,0 +1,33 @@
+
+version: '3'
+
+services:
+  backend:
+    build:
+      context: ./blog_backend
+      args:
+        DJANGO_ALLOWED_HOSTS: *
+        DJANGO_SECRET_KEY: *
+        DJANGO_CORS_ORIGIN_WHITELIST: *
+    command: gunicorn blog_backend.wsgi --bind 0.0.0.0:8000
+    ports:
+      - "8000:8000"
+  frontend:
+    build:
+      context: ./blog_frontend
+      args:
+        API_URL: *
+    volumes:
+      - build_folder:/frontend/build
+  nginx:
+    image: nginx:latest
+    ports:
+      - 80:8080
+    volumes:
+      - ./webserver/nginx-proxy.conf:/etc/nginx/conf.d/default.conf:ro
+      - build_folder:/var/www/frontend
+    depends_on:
+      - backend
+      - frontend
+volumes:
+  build_folder:
