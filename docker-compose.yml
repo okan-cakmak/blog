@@ -1,8 +1,14 @@
 version: '3'
 
 services:
-  web:
+  backend:
     build: ./blog_backend
     command: python manage.py runserver 0.0.0.0:8000
     ports:
       - "8000:8000"
+  frontend:
+    build: ./blog_frontend
+    command: npm run start
+    stdin_open: true
+    ports:
+      - "3000:3000"

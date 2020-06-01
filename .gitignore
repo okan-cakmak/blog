@@ -11,6 +11,7 @@ media
 
 # If you are using PyCharm #
 blog_backend/.idea/
+.idea
 
 # Python #
 *.py[cod]
