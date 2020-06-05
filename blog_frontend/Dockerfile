@@ -1,9 +1,7 @@
-# Docker Image which is used as foundation to create
-# a custom Docker Image with this Dockerfile
-FROM node:10
+FROM node:14.4.0-alpine3.10
 USER root
-WORKDIR /app
-COPY . .
-EXPOSE 3000
-RUN npm install
-RUN npm run start
+WORKDIR /frontend
+COPY . /frontend
+EXPOSE 5000
+RUN yarn
+RUN yarn build
