@@ -1,12 +1,9 @@
-import axios from "axios"
-import React, { Component } from "react";
+import React  from "react";
 import { connect } from 'react-redux'
-import {createItem} from '../Redux/action'
-import {
-    TextField,
-    FormControl
-} from "@material-ui/core";
-import DeleteIcon from "@material-ui/icons/Delete";
+import {getPosts} from '../Redux/action'
+import { Card, Row, Col } from 'antd';
+import "antd/dist/antd.css";
+
 
 
 
@@ -27,35 +24,23 @@ const styles = theme => ({
 class Blog extends React.Component {
 
     componentDidMount() {
-        // axios.get('http://0.0.0.0:8000/api/posts')
-        //     .then(response => {
-        //             console.log(response)
-        //             this.setState({"name": "okan", "posts": response.data})
-        //         }
-        //     )
-        //     .catch(err => console.log(err));
-        // this.setState({"name": "okan"})
-
-        this.props.createItem("ananzaaaaaaaaa")
+        this.props.getPosts();
     }
 
     render() {
+        const posts = this.props.posts
+        console.log(posts)
         return (
-            <div>
-                <div>
-                    <form noValidate autoComplete="off" onSubmit={this.handleSubmit}>
-                        <FormControl>
-                            <TextField
-                                label="New Task"
-                                id="margin-dense"
-                                value={this.props.posts}
-                                margin="dense"
-                                name="item"
-                            />
-                        </FormControl>
-                    </form>
-                </div>
-            </div>
+                    <Col span={12} offset={6}>
+
+                        {posts.map(p=>(
+                            <Row gutter={[16, 40]}>
+                            <Card key={p.id} title={p.title} style={{ width: '100%' }}>
+                                <p>{p.content}</p>
+                            </Card>
+                            </Row>
+                        ))}
+                    </Col>
         );
     }
 }
@@ -65,7 +50,7 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = {
-        createItem
+    getPosts
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Blog)

@@ -1,19 +1,19 @@
 import Types from "./types";
 import _ from "lodash"
 const initialState = {
-    posts: []
+    posts: [],
+    loading:false
 };
 
 const postReducer = (state = initialState, action) => {
     switch (action.type) {
-        case Types.CREATE_ITEM: {
+        case Types.POSTS_LOADING: {
             console.log("create_item");
-            return {...state,posts: action.payload};
+            return {...state,loading: action.payload};
         }
 
-        case Types.DELETE_ITEM: {
-            console.log("deleteitem");
-            return state;
+        case Types.GET_POSTS: {
+            return {...state,posts: action.payload};
         }
 
         default:
