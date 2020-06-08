@@ -1,24 +1,8 @@
-import React  from "react";
-import { connect } from 'react-redux'
+import React from "react";
+import {connect} from 'react-redux'
 import {getPosts} from '../Redux/action'
-import { Card, Row, Col } from 'antd';
+import {Card, Row, Col, Divider} from 'antd';
 import "antd/dist/antd.css";
-
-
-
-
-const styles = theme => ({
-    root: {
-        flexGrow: 1,
-        maxWidth: 752
-    },
-    demo: {
-        backgroundColor: theme.palette.background.paper
-    },
-    title: {
-        margin: `${theme.spacing.unit * 4}px 0 ${theme.spacing.unit * 2}px`
-    }
-});
 
 
 class Blog extends React.Component {
@@ -31,22 +15,24 @@ class Blog extends React.Component {
         const posts = this.props.posts
         console.log(posts)
         return (
-                    <Col span={12} offset={6}>
+            <Col span={12} offset={6}>
 
-                        {posts.map(p=>(
-                            <Row gutter={[16, 40]}>
-                            <Card key={p.id} title={p.title} style={{ width: '100%' }}>
-                                <p>{p.content}</p>
-                            </Card>
-                            </Row>
-                        ))}
-                    </Col>
+                {posts.map(p => (
+                    <Row gutter={[48, 48]}>
+                        <Col span={24}>
+                        <Card key={p.id} title={p.title} style={{width: '100%'}}>
+                            <p>{p.content}</p>
+                        </Card>
+                        </Col>
+                    </Row>
+                ))}
+            </Col>
         );
     }
 }
 
 const mapStateToProps = (state) => ({
-	posts: state.posts
+    posts: state.posts
 })
 
 const mapDispatchToProps = {
