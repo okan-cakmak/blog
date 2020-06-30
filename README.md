@@ -1,3 +1,4 @@
+<strong> Now you can check this article on <a href="https://medium.com/@cakmak.ok/how-to-deploy-django-rest-framework-and-react-redux-application-with-docker-fa902a611abf">Medium!</a> </strong> <br/>
 This is a primitive blog application. <br/>
 The aim of the project is to have a minimalistic yet extensible fullstack project template in case needed. <br/>
 Frontend and backend loosely coupled. <br/>
